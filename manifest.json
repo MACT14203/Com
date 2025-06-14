@@ -1,0 +1,20 @@
+{
+  "name": "Picto MA",
+  "short_name": "PictoMA",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "https://i.imgur.com/Gv2uqzq.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.imgur.com/Gv2uqzq.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

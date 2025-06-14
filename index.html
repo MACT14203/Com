@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Picto MA</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="https://i.imgur.com/Gv2uqzq.png" />
+  <style>
+    body {
+      background: #f5f5f5;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .comunicador {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+    }
+
+    .tarjeta {
+      background: white;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      padding: 10px;
+      transition: transform 0.2s;
+    }
+
+    .tarjeta:hover {
+      transform: scale(1.05);
+    }
+
+    .tarjeta img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="comunicador">
+    <div class="tarjeta" data-texto="descanso"><img src="https://i.imgur.com/00776cd8.png" alt="Descanso" /></div>
+    <div class="tarjeta" data-texto="ven"><img src="https://i.imgur.com/42db2f82.png" alt="Ven" /></div>
+    <div class="tarjeta" data-texto="detente"><img src="https://i.imgur.com/jlZFg1W.png" alt="Detente" /></div>
+    <div class="tarjeta" data-texto="espera"><img src="https://i.imgur.com/ZdKijOQ.png" alt="Espera" /></div>
+    <div class="tarjeta" data-texto="jugar"><img src="https://i.imgur.com/HBT4cAi.png" alt="Jugar" /></div>
+    <div class="tarjeta" data-texto="baño"><img src="https://i.imgur.com/jQRrhMc.png" alt="Baño" /></div>
+    <div class="tarjeta" data-texto="comer"><img src="https://i.imgur.com/77jyWmU.png" alt="Comer" /></div>
+    <div class="tarjeta" data-texto="hola"><img src="https://i.imgur.com/506U62R.png" alt="Hola" /></div>
+    <div class="tarjeta" data-texto="gracias"><img src="https://i.imgur.com/B2UtjHJ.png" alt="Gracias" /></div>
+    <div class="tarjeta" data-texto="ayuda"><img src="https://i.imgur.com/7F7Zrqu.png" alt="Ayuda" /></div>
+    <div class="tarjeta" data-texto="terminé"><img src="https://i.imgur.com/VXYghee.png" alt="Terminé" /></div>
+  </div>
+
+  <script>
+    const tarjetas = document.querySelectorAll(".tarjeta");
+    tarjetas.forEach(tarjeta => {
+      tarjeta.addEventListener("click", () => {
+        const texto = tarjeta.getAttribute("data-texto");
+        const utter = new SpeechSynthesisUtterance(texto);
+        utter.lang = "es-ES";
+        speechSynthesis.speak(utter);
+      });
+    });
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service worker registrado'))
+        .catch(err => console.error('Error registrando service worker:', err));
+    }
+  </script>
+</body>
+</html>
